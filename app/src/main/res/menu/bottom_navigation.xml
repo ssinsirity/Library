@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/catalogFragment"
+        android:icon="@drawable/ic_catalog"
+        android:title="@string/catalog"
+        tools:showAsAction="always" />
+    <item
+        android:id="@+id/ordersFragment"
+        android:icon="@drawable/ic_orders"
+        android:title="@string/orders"
+        tools:showAsAction="always" />
+    <item
+        android:id="@+id/readersFragment"
+        android:icon="@drawable/ic_readers"
+        android:title="@string/readers"
+        tools:showAsAction="always" />
+    <!--
+        <item
+            android:id="@+id/accountFragment"
+            android:icon="@drawable/ic_account"
+            android:title="@string/account"
+            tools:showAsAction="always" />
+    -->
+</menu>

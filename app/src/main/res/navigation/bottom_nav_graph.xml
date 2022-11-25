@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_nav_graph"
+    app:startDestination="@id/catalogFragment">
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.ssinsirity.library.ui.catalog.CatalogFragment"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.ssinsirity.library.ui.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/readersFragment"
+        android:name="com.ssinsirity.library.ui.readers.ReadersFragment"
+        android:label="fragment_readers"
+        tools:layout="@layout/fragment_readers" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.ssinsirity.library.ui.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+</navigation>

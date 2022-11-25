@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+
+    <EditText
+        android:id="@+id/book_name_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Book name"
+        android:inputType="textPersonName"
+        android:minEms="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/author_name_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="8"
+        android:hint="Author's name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/author_surname_et"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/book_name_et"
+        app:layout_constraintTop_toBottomOf="@+id/book_name_et" />
+
+    <EditText
+        android:id="@+id/author_surname_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Author's surname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/author_name_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/author_name_et"
+        app:layout_constraintTop_toTopOf="@+id/author_name_et" />
+
+
+    <EditText
+        android:id="@+id/genre_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Genre"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="343dp" />
+
+    <EditText
+        android:id="@+id/publisher_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Publisher"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="473dp" />
+
+    <EditText
+        android:id="@+id/amount_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:hint="Amount"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="602dp" />
+
+    <Button
+        android:id="@+id/create_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

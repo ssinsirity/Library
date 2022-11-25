@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492993964378",
+    "project_id": "library-40c2b",
+    "storage_bucket": "library-40c2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492993964378:android:2b1576b75ff4b5b26bab63",
+        "android_client_info": {
+          "package_name": "com.ssinsirity.library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492993964378-dbpkp4094bcgk3mric5m51hudvl5pfsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQtwlwjToPY3e_brgQHhcr2puE6miV2sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492993964378-dbpkp4094bcgk3mric5m51hudvl5pfsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

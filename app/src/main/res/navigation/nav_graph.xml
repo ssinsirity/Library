@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ssinsirity.library.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/login_to_registration"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/login_to_contentHost"
+            app:destination="@id/contentHostFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.ssinsirity.library.ui.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/registration_to_userInfo"
+            app:destination="@id/userInfoFragment"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/contentHostFragment"
+        android:name="com.ssinsirity.library.ui.bottom_nav.BottomNavFragment"
+        android:label="fragment_content_host"
+        tools:layout="@layout/fragment_bottom_nav" />
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.ssinsirity.library.ui.registration.UserInfoFragment"
+        android:label="fragment_user_info"
+        tools:layout="@layout/fragment_user_info" >
+        <action
+            android:id="@+id/userInfo_to_contentHost"
+            app:destination="@id/contentHostFragment"
+            app:popUpTo="@id/nav_graph" />
+        <argument
+            android:name="user_email"
+            app:argType="string" />
+    </fragment>
+</navigation>

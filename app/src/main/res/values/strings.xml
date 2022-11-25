@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Library</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="submit">Submit</string>
+    <string name="something_gets_wrong">Something gets wrong. Try it later.</string>
+    <string name="register">Register</string>
+    <string name="catalog">Catalog</string>
+    <string name="account">Account</string>
+    <string name="orders">Orders</string>
+    <string name="readers">Readers</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="phone_number">Phone number</string>
+    <string name="create_new_catalog">Create new catalog</string>
+    <string name="confirm_order">Confirm order</string>
+    <string name="are_you_sure_wanna_order">Are you sure you want to order this book?</string>
+    <string name="update_amount_of_catalog">Update amount of catalog</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="update">Update</string>
+    <string name="booked_by">booked by</string>
+    <string name="left">left</string>
+    <string name="not_available">Not available</string>
+    <string name="please_choose_another_book">Please, choose another book</string>
+    <string name="booked_date">booked date</string>
+    <string name="return_date">return date</string>
+    <string name="actual_return_date">actual return date</string>
+</resources>
