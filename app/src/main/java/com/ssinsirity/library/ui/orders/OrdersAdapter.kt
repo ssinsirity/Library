@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssinsirity.core.data.model.BookedCatalog
 import com.ssinsirity.library.R
 import com.ssinsirity.library.databinding.ItemOrderBinding
-import com.ssinsirity.library.util.toDate
+import com.ssinsirity.library.util.toFormat
 
 class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
     private val items = mutableListOf<BookedCatalog>()
@@ -47,18 +47,22 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
             val readerFullName = "${order.reader.firstName} ${order.reader.lastName}"
             val bookedByReader = "$bookedBy $readerFullName (${order.reader.cardNumber})"
 
-            bookedBookAuthorTv.text = authorFullName
-            bookedBookNameTv.text = order.catalog.book.title
-            bookedByReaderNameTv.text = bookedByReader
-
             val bookedString = root.context.getString(R.string.booked_date)
             val returnString = root.context.getString(R.string.return_date)
             val actualReturnString = root.context.getString(R.string.actual_return_date)
 
-            val bookedDate = "$bookedString: 11.11.2022"
-            val returnDate = "$returnString: 11.12.2022"
-            val actualReturnDate = "$actualReturnString: -"
+            val bookedDate = "$bookedString: ${order.bookedDate.toFormat()}"
+            val returnDate = "$returnString: ${order.returnDate.toFormat()}"
+            val actualReturnDate = "$actualReturnString: ${
+                if (order.actualReturnDate.time == 0L)
+                    "-"
+                else
+                    order.actualReturnDate.toFormat()
+            }"
 
+            bookedBookAuthorTv.text = authorFullName
+            bookedBookNameTv.text = order.catalog.book.title
+            bookedByReaderNameTv.text = bookedByReader
 
             bookedDateTv.text = bookedDate
             returnDateTv.text = returnDate

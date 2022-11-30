@@ -42,11 +42,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     viewModel.update(ViewModelField.PASSWORD, password)
                 }
             )
-            submitBtn.setOnClickListener {
-                val contentHost = LoginFragmentDirections.loginToContentHost()
-                navController.navigate(contentHost)
-                // todo viewModel.submitData()
-            }
+            submitBtn.setOnClickListener { viewModel.submitData() }
             registerBtn.setOnClickListener {
                 val registrationFragment = LoginFragmentDirections.loginToRegistration()
                 navController.navigate(registrationFragment)
@@ -70,15 +66,20 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 when (status) {
                     is AuthStatus.Idle -> {}
                     is AuthStatus.Loading -> setViewEnabled(false, errorMsg = null)
-                    is AuthStatus.Success -> {
-                        val contentHost = LoginFragmentDirections.loginToContentHost()
-                        navController.navigate(contentHost)
-                    }
+                    is AuthStatus.Success -> viewModel.identifyUser()
                     is AuthStatus.Error -> {
                         val message = status.throwable?.message
                             ?: getString(R.string.something_gets_wrong)
                         setViewEnabled(true, errorMsg = message)
                     }
+                }
+            }
+        }
+        repeatOnStart {
+            viewModel.ok.collect {
+                if (it == "ok") {
+                    val contentHost = LoginFragmentDirections.loginToContentHost()
+                    navController.navigate(contentHost)
                 }
             }
         }

@@ -7,5 +7,11 @@ enum class ViewModelField {
     NAME,
     SURNAME,
     PHONE_NUMBER,
-    READERS
+    USER_TYPE,
+    BOOK_TITLE,
+    GENRE,
+    AUTHOR_FIRST_NAME,
+    AUTHOR_LAST_NAME,
+    PUBLISHER_NAME,
+    AMOUNT
 }

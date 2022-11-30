@@ -17,9 +17,10 @@ import javax.inject.Inject
 @HiltViewModel
 class OrdersViewModel @Inject constructor(
     userSharedPref: UserSharedPref,
-    bookedCatalogRepository: BookedCatalogRepository
+    private val bookedCatalogRepository: BookedCatalogRepository
 ) : ViewModel() {
 
+    private var _userId: String? = null
     private var _orders = emptyList<BookedCatalog>()
 
     private val _filteredOrders = MutableStateFlow(emptyList<BookedCatalog>())
@@ -29,7 +30,14 @@ class OrdersViewModel @Inject constructor(
         val userId = if (UserMode.mode == UserMode.Mode.READER)
             userSharedPref.currentReader.id
         else null
+        fetchOrders(userId)
+    }
 
+    fun fetchOrders() {
+        fetchOrders(_userId)
+    }
+
+    private fun fetchOrders(userId: String?) {
         viewModelScope.launch {
             bookedCatalogRepository.fetchBookedCatalogs(userId) { result ->
                 if (result.isSuccess) {

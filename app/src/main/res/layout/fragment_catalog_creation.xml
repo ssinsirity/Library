@@ -4,65 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".ui.catalog_creation.CatalogCreationFragment">
 
 
     <EditText
         android:id="@+id/book_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:hint="Book name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minEms="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/new_book_tv"
+        app:layout_constraintTop_toBottomOf="@id/new_book_tv" />
 
     <EditText
         android:id="@+id/author_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:ems="8"
         android:hint="Author's name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/author_surname_et"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/book_name_et"
-        app:layout_constraintTop_toBottomOf="@+id/book_name_et" />
+        app:layout_constraintTop_toBottomOf="@+id/author_tv" />
 
     <EditText
         android:id="@+id/author_surname_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="8"
         android:hint="Author's surname"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/author_name_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/author_name_et"
-        app:layout_constraintTop_toTopOf="@+id/author_name_et" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/author_name_et" />
 
 
     <EditText
         android:id="@+id/genre_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="8"
         android:hint="Genre"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="343dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_name_et" />
 
     <EditText
         android:id="@+id/publisher_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:ems="8"
         android:hint="Publisher"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="473dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publisher_tv" />
 
     <EditText
         android:id="@+id/amount_et"
@@ -70,9 +76,10 @@
         android:layout_height="wrap_content"
         android:ems="5"
         android:hint="Amount"
-        android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="602dp" />
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/publisher_et" />
 
     <Button
         android:id="@+id/create_btn"
@@ -83,4 +90,38 @@
         android:text="create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/new_book_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/author_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Author"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genre_et" />
+
+    <TextView
+        android:id="@+id/publisher_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Publisher"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/author_surname_et" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

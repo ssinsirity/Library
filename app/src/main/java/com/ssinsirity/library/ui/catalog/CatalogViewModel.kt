@@ -24,7 +24,12 @@ class CatalogViewModel @Inject constructor(
     private val _filteredCatalogs = MutableStateFlow(emptyList<Catalog>())
     val filteredCatalogs = _filteredCatalogs.asStateFlow()
 
+
     init {
+        fetchCatalogs()
+    }
+
+    fun fetchCatalogs() {
         viewModelScope.launch {
             catalogRepository.fetchCatalogs { result ->
                 if (result.isSuccess) {
@@ -52,12 +57,15 @@ class CatalogViewModel @Inject constructor(
     fun orderCatalog(catalog: Catalog) {
         viewModelScope.launch {
             bookedCatalogRepository.bookCatalog(catalog) {
-
+                if(it.isSuccess) fetchCatalogs()
             }
         }
     }
 
     fun updateCatalogAmount(catalog: Catalog, amount: Int) {
-
+        viewModelScope.launch {
+            catalogRepository.updateCatalog(catalog, amount) {}
+            fetchCatalogs()
+        }
     }
 }

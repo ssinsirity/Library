@@ -50,10 +50,10 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                 }
             )
             submitBtn.setOnClickListener {
-                val userInfo =
+                /*val userInfo =
                     RegistrationFragmentDirections.registrationToUserInfo(viewModel.email.value)
-                navController.navigate(userInfo)
-                // todo viewModel.submitData()
+                navController.navigate(userInfo)*/
+                viewModel.submitData()
             }
         }
     }

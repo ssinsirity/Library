@@ -18,8 +18,6 @@ class CatalogRepositoryImpl(
     constructor() : this(Dispatchers.IO)
 
     override suspend fun fetchCatalogs(onResult: (Result<List<Catalog>>) -> Unit) {
-        // val catalogs = mutableListOf<Catalog>()
-
         val listOfCatalogsResponse =
             fs.collection(Collections.CATALOG).getAwaitObjects<CatalogResponse>()
 
@@ -41,61 +39,7 @@ class CatalogRepositoryImpl(
             return@map response.toModel(book, publisher)
         }
         onResult(Result.success(listOfCatalogsModel))
-
-/*
-        fs.collection(Collections.CATALOG).get()
-            .addOnFailureListener { onResult(Result.failure(it)) }
-            .addOnSuccessListener { snapshot ->
-                val listOfCatalogsResponse = snapshot.toObjects<CatalogResponse>()
-                Log.d("filteredCatalogs", "response $listOfCatalogsResponse")
-                listOfCatalogsResponse.forEach { response ->
-                    fs.runTransaction {
-                        with(it) {
-                            val publisherResponse = get(
-                                docRefOf(Collections.PUBLISHER, response.publisherId)
-                            ).toObject<PublisherResponse>()!!
-
-                            val bookResponse = get(
-                                docRefOf(Collections.BOOK, response.bookId)
-                            ).toObject<BookResponse>()!!
-
-                            val genreResponse = get(
-                                docRefOf(Collections.GENRE, bookResponse.genreId)
-                            ).toObject<GenreResponse>()!!
-
-                            val authorResponse = get(
-                                docRefOf(Collections.AUTHOR, bookResponse.authorId)
-                            ).toObject<AuthorResponse>()!!
-
-                            val authorModel = authorResponse.toModel()
-                            val genreModel = genreResponse.toModel()
-                            val publisherModel = publisherResponse.toModel()
-
-                            val bookModel = bookResponse.toModel(authorModel, genreModel)
-                            val catalogModel = response.toModel(bookModel, publisherModel)
-
-                            catalogs.add(catalogModel)
-                        }
-                    }
-                }.also {
-                    onResult(Result.success(catalogs))
-                }
-            }
-*/
     }
-
-    /* // todo temp realisation
-     override suspend fun fetchCatalogs(genre: Genre): Flow<List<Catalog>> =
-         fetchCatalogs().onEach { it.filter { catalog -> catalog.book.genre == genre } }
-
-     // todo temp realisation
-     override suspend fun fetchCatalogs(author: Author): Flow<List<Catalog>> =
-         fetchCatalogs().onEach { it.filter { catalog -> catalog.book.author == author } }
-
-     // todo temp realisation
-     override suspend fun fetchCatalogs(title: String): Flow<List<Catalog>> =
-         fetchCatalogs().onEach { it.filter { catalog -> catalog.book.title.startsWith(title) } }
- */
 
     override suspend fun postCatalog(catalog: Catalog, onResult: (Result<Catalog>) -> Unit) {
         withContext(ioScope) {
@@ -125,15 +69,17 @@ class CatalogRepositoryImpl(
         }
     }
 
-    override suspend fun postCatalogs(
-        catalogs: Collection<Catalog>,
-        onResult: (Result<Collection<Catalog>>) -> Unit
+
+    override suspend fun updateCatalog(
+        catalog: Catalog,
+        amount: Int,
+        onResult: (Result<Catalog>) -> Unit
     ) {
-        catalogs.forEach { catalog ->
-            postCatalog(catalog) { result ->
-                result.onFailure { onResult(Result.failure(it)) }
-            }
+        withContext(ioScope) {
+            val updatedCatalog = catalog.copy(amount = amount).toResponse()
+
+            docRefOf(Collections.CATALOG, catalog.id)
+                .set(updatedCatalog)
         }
-        onResult(Result.success(catalogs))
     }
 }

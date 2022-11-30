@@ -48,6 +48,9 @@ class UserInfoFragment : Fragment(R.layout.fragment_user_info) {
                 viewModel.update(ViewModelField.PHONE_NUMBER, phoneNumber)
             }
         )
+        userTypeSw.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.update(ViewModelField.USER_TYPE, isChecked)
+        }
         submitBtn.setOnClickListener { viewModel.submitData() }
     }
 

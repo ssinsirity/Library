@@ -1,10 +1,9 @@
 package com.ssinsirity.library.util
 
-import java.time.Instant
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
 import java.util.*
 
-fun Instant.toDate(): String {
-    val formatter = DateTimeFormatter.ofPattern("dd.mm.yyyy", Locale.getDefault())
+fun Date.toFormat(): String {
+    val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     return formatter.format(this)
 }

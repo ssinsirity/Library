@@ -3,7 +3,6 @@ package com.ssinsirity.core.data
 import com.google.firebase.Timestamp
 import com.ssinsirity.core.data.entity.*
 import com.ssinsirity.core.data.model.*
-import java.util.*
 
 fun AuthorResponse.toModel() = Author(
     id = id,
@@ -27,9 +26,9 @@ fun BookedCatalogResponse.toModel(
     catalog = catalog,
     reader = reader,
     librarian = librarian,
-    bookedDate = bookedDate.toDate().toInstant(),
-    returnDate = returnDate.toDate().toInstant(),
-    actualReturnDate = actualReturnDate.toDate().toInstant()
+    bookedDate = bookedDate.toDate(),
+    returnDate = returnDate.toDate(),
+    actualReturnDate = actualReturnDate.toDate()
 )
 
 fun BookedCatalog.toResponse() = BookedCatalogResponse(
@@ -37,9 +36,9 @@ fun BookedCatalog.toResponse() = BookedCatalogResponse(
     catalogId = catalog.id,
     readerId = reader.id,
     librarianId = librarian.id,
-    bookedDate = Timestamp(Date.from(bookedDate)),
-    returnDate = Timestamp(Date.from(returnDate)),
-    actualReturnDate = Timestamp(Date.from(actualReturnDate))
+    bookedDate = Timestamp(bookedDate),
+    returnDate = Timestamp(returnDate),
+    actualReturnDate = Timestamp(actualReturnDate)
 )
 
 
@@ -49,14 +48,14 @@ fun BookResponse.toModel(author: Author, genre: Genre) = Book(
     annotation = annotation,
     author = author,
     genre = genre,
-    published = publishedDate.toDate().toInstant()
+    published = publishedDate.toDate()
 )
 
 fun Book.toResponse() = BookResponse(
     id = id,
     title = title,
     annotation = annotation,
-    publishedDate = Timestamp(Date.from(published)),
+    publishedDate = Timestamp(published),
     authorId = author.id,
     genreId = genre.id
 )

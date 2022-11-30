@@ -87,33 +87,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Switch
-        android:id="@+id/switch1"
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/user_type_sw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        app:layout_constraintBottom_toBottomOf="@id/textView"
-        app:layout_constraintEnd_toStartOf="@id/textView2"
-        app:layout_constraintStart_toEndOf="@id/textView"
-        app:layout_constraintTop_toTopOf="@id/textView" />
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@id/librarian_tv"
+        app:layout_constraintEnd_toStartOf="@id/reader_tv"
+        app:layout_constraintStart_toEndOf="@id/librarian_tv"
+        app:layout_constraintTop_toTopOf="@id/librarian_tv" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/librarian_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Librarian"
-        app:layout_constraintEnd_toStartOf="@+id/switch1"
+        android:text="@string/librarian"
+        app:layout_constraintEnd_toStartOf="@+id/user_type_sw"
         app:layout_constraintStart_toStartOf="@+id/user_info_error"
         app:layout_constraintTop_toBottomOf="@+id/phone_number_layout"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/reader_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reader"
-        app:layout_constraintBottom_toBottomOf="@id/switch1"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toTopOf="@id/switch1" />
+        android:text="@string/reader"
+        app:layout_constraintBottom_toBottomOf="@id/user_type_sw"
+        app:layout_constraintStart_toEndOf="@+id/user_type_sw"
+        app:layout_constraintTop_toTopOf="@id/user_type_sw" />
 </androidx.constraintlayout.widget.ConstraintLayout>

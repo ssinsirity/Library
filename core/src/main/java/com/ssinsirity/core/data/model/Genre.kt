@@ -3,6 +3,7 @@ package com.ssinsirity.core.data.model
 enum class Genre(
     val id: String
 ) {
+    NO_GENRE("0"),
     FICTION("1"),
     NON_FICTION("2"),
     NOVEL("3"),
@@ -12,6 +13,6 @@ enum class Genre(
     ;
 
     companion object {
-        fun findValue(name: String) = values().find { it.name == name }!!
+        fun findValue(name: String) = values().find { it.name.equals(name, true) } ?: NO_GENRE
     }
 }

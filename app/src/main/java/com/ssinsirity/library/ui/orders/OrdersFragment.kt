@@ -45,4 +45,9 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
             viewModel.filteredOrders.collect { ordersAdapter.updateItems(it) }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchOrders()
+    }
 }

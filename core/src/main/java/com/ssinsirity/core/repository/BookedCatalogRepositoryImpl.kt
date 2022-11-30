@@ -10,7 +10,6 @@ import com.ssinsirity.core.data.toResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.time.Instant
 import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -86,13 +85,19 @@ class BookedCatalogRepositoryImpl @Inject constructor(
             catalog = adjustedAmountCatalog,
             reader = reader,
             librarian = librarian,
-            bookedDate = Instant.now()
+            bookedDate = Date(),
+            returnDate = Calendar.getInstance().apply { add(Calendar.MONTH, 1) }.time
         ).toResponse()
+        val adjustedCatalogResponse = adjustedAmountCatalog.toResponse()
 
         withContext(ioScope) {
-            docRefOf(Collections.BOOKED_CATALOG, bookedCatalogResponse.id)
-                .set(bookedCatalogResponse)
-                .addOnSuccessListener { onResult(Result.success(catalog)) }
+            fs.runBatch { wb ->
+                wb.set(docRefOf(Collections.CATALOG, catalog.id), adjustedCatalogResponse)
+                wb.set(
+                    docRefOf(Collections.BOOKED_CATALOG, bookedCatalogResponse.id),
+                    bookedCatalogResponse
+                )
+            }.addOnSuccessListener { onResult(Result.success(catalog)) }
                 .addOnFailureListener { onResult(Result.failure(it)) }
         }
     }

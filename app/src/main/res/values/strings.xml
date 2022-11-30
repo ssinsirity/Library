@@ -27,4 +27,6 @@
     <string name="booked_date">booked date</string>
     <string name="return_date">return date</string>
     <string name="actual_return_date">actual return date</string>
+    <string name="librarian">Librarian</string>
+    <string name="reader">Reader</string>
 </resources>

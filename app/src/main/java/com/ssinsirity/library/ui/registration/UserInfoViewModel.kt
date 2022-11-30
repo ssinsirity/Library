@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.ssinsirity.core.data.model.Librarian
 import com.ssinsirity.core.data.model.ReaderCard
 import com.ssinsirity.core.repository.UserRepository
+import com.ssinsirity.core.repository.UserSharedPref
 import com.ssinsirity.core.usecase.NameValidator
 import com.ssinsirity.core.usecase.PhoneNumberValidator
 import com.ssinsirity.library.AuthStatus
@@ -25,7 +26,8 @@ class UserInfoViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val nameValidator: NameValidator,
     private val phoneNumberValidator: PhoneNumberValidator,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val userSharedPref: UserSharedPref
 ) : ViewModel() {
 
     private val email: String
@@ -64,6 +66,10 @@ class UserInfoViewModel @Inject constructor(
             ViewModelField.NAME -> _name.update { value as String }
             ViewModelField.SURNAME -> _surname.update { value as String }
             ViewModelField.PHONE_NUMBER -> _phoneNumber.update { value as String }
+            ViewModelField.USER_TYPE -> _userType.update {
+                val isChecked = value as Boolean
+                if (isChecked) UserMode.Mode.READER else UserMode.Mode.LIBRARIAN
+            }
             else -> {}
         }
     }
@@ -95,10 +101,10 @@ class UserInfoViewModel @Inject constructor(
             nameResult.isSuccess && surnameResult.isSuccess && phoneNumberResult.isSuccess
 
         if (hasNotError)
-            loadUser()
+            uploadUser()
     }
 
-    private fun loadUser() {
+    private fun uploadUser() {
         val onResult = { result: Result<Any> ->
             _authState.update {
                 if (result.isSuccess)
@@ -110,6 +116,8 @@ class UserInfoViewModel @Inject constructor(
 
         viewModelScope.launch {
             if (_userType.value == UserMode.Mode.LIBRARIAN) {
+                UserMode.mode = UserMode.Mode.LIBRARIAN
+
                 val librarian = Librarian(
                     id = UUID.randomUUID().toString(),
                     email = email,
@@ -118,6 +126,7 @@ class UserInfoViewModel @Inject constructor(
                 )
                 userRepository.post(librarian, onResult)
             } else {
+                UserMode.mode = UserMode.Mode.READER
                 val reader = ReaderCard(
                     id = UUID.randomUUID().toString(),
                     email = email,
@@ -126,6 +135,7 @@ class UserInfoViewModel @Inject constructor(
                     lastName = _surname.value,
                     phoneNumber = _phoneNumber.value
                 )
+                userSharedPref.currentReader = reader
                 userRepository.post(reader, onResult)
             }
         }

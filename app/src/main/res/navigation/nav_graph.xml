@@ -33,12 +33,16 @@
         android:id="@+id/contentHostFragment"
         android:name="com.ssinsirity.library.ui.bottom_nav.BottomNavFragment"
         android:label="fragment_content_host"
-        tools:layout="@layout/fragment_bottom_nav" />
+        tools:layout="@layout/fragment_bottom_nav">
+        <action
+            android:id="@+id/contentHost_to_catalogCreation"
+            app:destination="@id/catalogCreationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
         android:name="com.ssinsirity.library.ui.registration.UserInfoFragment"
         android:label="fragment_user_info"
-        tools:layout="@layout/fragment_user_info" >
+        tools:layout="@layout/fragment_user_info">
         <action
             android:id="@+id/userInfo_to_contentHost"
             app:destination="@id/contentHostFragment"
@@ -47,4 +51,9 @@
             android:name="user_email"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/catalogCreationFragment"
+        android:name="com.ssinsirity.library.ui.catalog_creation.CatalogCreationFragment"
+        android:label="fragment_catalog_creation"
+        tools:layout="@layout/fragment_catalog_creation" />
 </navigation>
